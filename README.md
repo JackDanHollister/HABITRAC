@@ -1,5 +1,5 @@
 # HABITRAC
-HABITRAC - HABItat TRACking and Behavioral Analysis.
+HABITRAC - HABItat TRACking and Behavioral Analysis
 
 
 This repository hosts a video analysis system utilizing the YOLOv8 model to process daily video recordings stored in folders. The system traverses each folder, applies object detection on every frame, and records detections in a CSV file. Each record includes the class, the position (x, y coordinates) of each detected object, and the exact time in HH:MM:SS format derived from the video filename. The system is designed to handle multiple classes and efficiently manages the processing of extensive video data.
@@ -7,14 +7,23 @@ This repository hosts a video analysis system utilizing the YOLOv8 model to proc
 Originally designed to monitor animals within enclosed spaces, this system is versatile enough to be adapted for various applications. It efficiently processes large volumes of video files, organized by day, to simplify data management and enhance usability. This approach allows for easier viewing and analysis of the data collected over extended periods.
 
 
+
+
 ``` python
 
+####### HABITRAC - HABItat TRACking and Behavioral Analysis #######
+
+
+### Imports ###
 
 import os
 import csv
 import cv2
 from ultralytics import YOLO
 import gc
+
+
+### Main code ###
 
 # Initialize YOLO model
 model = YOLO('dir/to/model/goes/here/yolo_model.pt')
