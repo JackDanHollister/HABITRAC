@@ -1,6 +1,10 @@
 # HABITRAC
-HABITRAC - HABItat TRACking and Behavioral Analysis." 
+HABITRAC - HABItat TRACking and Behavioral Analysis.
 
+
+This repository hosts a video analysis system utilizing the YOLOv8 model to process daily video recordings stored in folders. The system traverses each folder, applies object detection on every frame, and records detections in a CSV file. Each record includes the class, the position (x, y coordinates) of each detected object, and the exact time in HH:MM:SS format derived from the video filename. The system is designed to handle multiple classes and efficiently manages the processing of extensive video data.
+
+Originally designed to monitor animals within enclosed spaces, this system is versatile enough to be adapted for various applications. It efficiently processes large volumes of video files, organized by day, to simplify data management and enhance usability. This approach allows for easier viewing and analysis of the data collected over extended periods.
 
 
 ``` python
@@ -13,19 +17,22 @@ from ultralytics import YOLO
 import gc
 
 # Initialize YOLO model
-model = YOLO("../yolo_trained_models_2024/snail_ai_20jan24/detect/train/weights/best.pt")
+model = YOLO('dir/to/model/goes/here/yolo_model.pt')
 names = model.names
 
-# Define color mapping for each class
+# Define colour mapping for each class - you can make pretty pictures later on
 class_colors = {
-    'snail': (0, 255, 0),
+    'class_goes_here': (0, 255, 0),
+    'other_classes_also_go_here': (0, 0, 255)
+    'and_so_on': (255, 0, 0)
 }
 
 # Main directory containing subdirectories with videos
-main_dir_path = '../../../../../../../media/jack/extra_500gb/snail_ai/snail_2_22Dec/'
+main_dir_path = 'dir/goes/here'
 
 def extract_date_and_time_from_filename(filename):
-    # New pattern: video_YY_MM_DD_HH_MM_SS.mp4
+    # File name of video pattern: video_YY_MM_DD_HH_MM_SS.mp4
+    ## I had minute long videos that looked like this: video_24_01_24_11_00.mp4
     parts = filename.split('_')
     if len(parts) >= 7 and parts[0] == 'video' and parts[6].endswith('.mp4'):
         year = '20' + parts[1]  # Assuming 21st century (20xx)
